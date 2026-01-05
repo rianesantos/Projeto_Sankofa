@@ -1,0 +1,13 @@
+# Python e Django
+__pycache__/
+*.py[cod]
+venv/
+env/
+db.sqlite3
+
+# Mídia e Arquivos Estáticos (upload de testes)
+media/
+staticfiles/
+
+# Sistema Operacional
+.DS_Store
