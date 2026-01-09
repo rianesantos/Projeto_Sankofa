@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório Mensal - Projeto Sankofa</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; padding: 40px; color: #333; }
+        .header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 20px; margin-bottom: 30px; }
+        .logo { font-size: 24px; font-weight: bold; text-transform: uppercase; }
+        .title { font-size: 18px; margin-top: 10px; color: #555; }
+        
+        .box { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+        .box h3 { margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        
+        .row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 16px; }
+        .label { font-weight: bold; }
+        
+        .footer { margin-top: 50px; text-align: center; font-size: 12px; color: #888; border-top: 1px solid #ccc; padding-top: 10px; }
+        
+        /* Botão que só aparece na tela, mas some no papel/PDF */
+        .no-print { text-align: right; margin-bottom: 20px; }
+        .btn { background: #333; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; cursor: pointer; }
+
+        @media print {
+            .no-print { display: none; }
+            body { padding: 0; }
+            .box { border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <button onclick="window.print()" class="btn">🖨️ Imprimir / Salvar PDF</button>
+    </div>
+
+    <div class="header">
+        <div class="logo">Projeto Sankofa</div>
+        <div class="title">Relatório Mensal de Atividades</div>
+    </div>
+
+    <div class="box">
+        <h3>📅 Referência</h3>
+        <div class="row">
+            <span class="label">Mês/Ano:</span>
+            <span>{{ r.mes_referencia|date:"F / Y" }}</span>
+        </div>
+        <div class="row">
+            <span class="label">Gerado em:</span>
+            <span>{{ r.data_geracao|date:"d/m/Y H:i" }}</span>
+        </div>
+    </div>
+
+    <div class="box">
+        <h3>👥 Membros</h3>
+        <div class="row">
+            <span class="label">Total de Membros Ativos:</span>
+            <span>{{ r.total_membros }}</span>
+        </div>
+    </div>
+
+    <div class="box">
+        <h3>💰 Finanças</h3>
+        <div class="row">
+            <span class="label">Total Receitas:</span>
+            <span style="color: green;">R$ {{ r.total_receitas }}</span>
+        </div>
+        <div class="row">
+            <span class="label">Total Despesas:</span>
+            <span style="color: red;">R$ {{ r.total_despesas }}</span>
+        </div>
+        <hr>
+        <div class="row" style="font-size: 18px; margin-top: 15px;">
+            <span class="label">Saldo Final:</span>
+            <strong>R$ {{ r.saldo_final }}</strong>
+        </div>
+    </div>
+
+    <div class="footer">
+        Documento gerado automaticamente pelo Sistema Sankofa.<br>
+        Este documento reflete os dados cadastrados no banco de dados até a data de emissão.
+    </div>
+
+</body>
+</html>
