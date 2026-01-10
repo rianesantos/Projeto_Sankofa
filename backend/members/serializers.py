@@ -1,31 +1,14 @@
 from rest_framework import serializers
-from .models import Member, Documento
+# O ponto (.) significa "desta mesma pasta"
+from .models import Member, Documento  # <--- Confirme se o nome do model é Documento ou DocumentoMembro no seu models.py
 
 class MemberSerializer(serializers.ModelSerializer):
     class Meta:
-        
         model = Member
-        
-        fields = [
-            'id',
-            'nome_completo',
-            'email',
-            'cpf',
-            'rg',
-            'data_nascimento',
-            'situacao',
-            'telefone_contato',
-            'data_cadastro',
-            'parentes'
-        ]
-        
+        fields = '__all__'  # Pega TUDO (nome, cpf, foto, data...) automaticamente
+
 class DocumentoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Documento
-        fields = [
-            'id',
-            'membro', # O ID do membro ao qual o doc pertence
-            'arquivo', # O arquivo do documento
-            'descricao',
-            'data_upload'
-        ]
+        # Importante: Confirme se o nome da classe no models.py é 'Documento' ou 'DocumentoMembro'
+        model = Documento 
+        fields = '__all__'
